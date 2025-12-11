@@ -53,7 +53,7 @@ A full-featured e-commerce mobile application built with React Native, featuring
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Gajendra7055/Zignuts-Practical.git
    cd Zignuts-Practical
    ```
 
@@ -107,7 +107,8 @@ Zignuts-Practical/
 │   ├── utils/               # Utility functions
 │   │   └── auth.ts
 │   └── types/               # TypeScript type definitions
-│       └── index.ts
+│       ├── index.ts
+│       └── navigation.ts
 ├── App.tsx                  # Main app component
 ├── package.json
 └── README.md
