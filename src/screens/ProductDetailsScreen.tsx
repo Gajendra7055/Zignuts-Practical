@@ -51,7 +51,7 @@ export const ProductDetailsScreen: React.FC<ProductDetailsScreenProps> = ({
         <Image source={{uri: product.image}} style={styles.image} />
         <View style={styles.content}>
           <Text style={styles.title}>{product.title}</Text>
-          <Text style={styles.price}>${product.price.toFixed(2)}</Text>
+          <Text style={styles.price}>₹{product.price.toFixed(2)}</Text>
           <Text style={styles.category}>{product.category}</Text>
           <Text style={styles.description}>{product.description}</Text>
           <View style={styles.ratingContainer}>

@@ -47,7 +47,7 @@ export const OrderHistoryScreen: React.FC<OrderHistoryScreenProps> = ({
             <Text style={styles.orderId}>Order #{item.id.slice(0, 8)}</Text>
             <Text style={styles.orderDate}>{formatDate(item.date)}</Text>
           </View>
-          <Text style={styles.orderTotal}>${item.totalPrice.toFixed(2)}</Text>
+          <Text style={styles.orderTotal}>₹{item.totalPrice.toFixed(2)}</Text>
         </View>
         <View style={styles.orderFooter}>
           <Text style={styles.itemsCount}>

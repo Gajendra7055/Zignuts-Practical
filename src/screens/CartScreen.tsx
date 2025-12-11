@@ -30,7 +30,7 @@ export const CartScreen: React.FC<CartScreenProps> = ({navigation}) => {
 
     Alert.alert(
       'Confirm Order',
-      `Total: $${getCartTotal().toFixed(2)}\n\nDo you want to place this order?`,
+      `Total: ₹${getCartTotal().toFixed(2)}\n\nDo you want to place this order?`,
       [
         {text: 'Cancel', style: 'cancel'},
         {
@@ -60,7 +60,7 @@ export const CartScreen: React.FC<CartScreenProps> = ({navigation}) => {
           <Text style={styles.itemTitle} numberOfLines={2}>
             {product.title}
           </Text>
-          <Text style={styles.itemPrice}>${product.price.toFixed(2)}</Text>
+          <Text style={styles.itemPrice}>₹{product.price.toFixed(2)}</Text>
           <View style={styles.quantityContainer}>
             <TouchableOpacity
               style={styles.quantityButton}
@@ -73,7 +73,7 @@ export const CartScreen: React.FC<CartScreenProps> = ({navigation}) => {
               onPress={() => updateCartItemQuantity(product.id, quantity + 1)}>
               <Text style={styles.quantityButtonText}>+</Text>
             </TouchableOpacity>
-            <Text style={styles.itemTotal}>${itemTotal.toFixed(2)}</Text>
+            <Text style={styles.itemTotal}>₹{itemTotal.toFixed(2)}</Text>
           </View>
         </View>
         <TouchableOpacity
@@ -108,7 +108,7 @@ export const CartScreen: React.FC<CartScreenProps> = ({navigation}) => {
           <View style={styles.footer}>
             <View style={styles.totalContainer}>
               <Text style={styles.totalLabel}>Total:</Text>
-              <Text style={styles.totalPrice}>${getCartTotal().toFixed(2)}</Text>
+              <Text style={styles.totalPrice}>₹{getCartTotal().toFixed(2)}</Text>
             </View>
             <Button
               title="Place Order"

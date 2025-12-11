@@ -21,7 +21,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({product, onPress}) => {
         <Text style={styles.title} numberOfLines={2}>
           {product.title}
         </Text>
-        <Text style={styles.price}>${product.price.toFixed(2)}</Text>
+        <Text style={styles.price}>₹{product.price.toFixed(2)}</Text>
       </View>
     </TouchableOpacity>
   );
