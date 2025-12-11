@@ -1,97 +1,270 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# E-Commerce React Native App
 
-# Getting Started
+A full-featured e-commerce mobile application built with React Native, featuring product browsing, shopping cart, authentication, and order management.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Features
 
-## Step 1: Start Metro
+- 🔐 **Authentication System**
+  - Mock login with predefined credentials
+  - Auto-login with token persistence
+  - Secure token storage using AsyncStorage
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+- 🛍️ **Product Management**
+  - Browse products from FakeStore API
+  - Product details with images, descriptions, and ratings
+  - Real-time product data fetching
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+- 🛒 **Shopping Cart**
+  - Add/remove products
+  - Update quantities
+  - Real-time total calculation
+  - Cart persistence
 
-```sh
-# Using npm
+- 📦 **Order Management**
+  - Place orders with cart items
+  - Order history tracking
+  - Order details (ID, date, total, items count)
+
+- 🎨 **Modern UI/UX**
+  - Clean and intuitive interface
+  - Reusable components
+  - Smooth navigation
+  - Loading states and error handling
+
+## Tech Stack
+
+- **React Native** 0.83.0
+- **TypeScript**
+- **React Navigation** (Stack + Bottom Tabs)
+- **Context API** (State Management)
+- **AsyncStorage** (Data Persistence)
+- **FakeStore API** (Product Data)
+
+## Installation
+
+### Prerequisites
+
+- Node.js >= 20
+- React Native development environment set up
+- iOS Simulator (for Mac) or Android Emulator
+- Xcode (for iOS) or Android Studio (for Android)
+
+### Steps
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd Zignuts-Practical
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Install iOS dependencies** (iOS only)
+   ```bash
+   cd ios && pod install && cd ..
+   ```
+
+4. **Run the app**
+
+   For iOS:
+   ```bash
+   npm run ios
+   ```
+
+   For Android:
+   ```bash
+   npm run android
+   ```
+
+## Project Structure
+
+```
+Zignuts-Practical/
+├── src/
+│   ├── components/          # Reusable UI components
+│   │   ├── Button.tsx
+│   │   ├── Header.tsx
+│   │   ├── Loader.tsx
+│   │   ├── Modal.tsx
+│   │   ├── ProductCard.tsx
+│   │   └── Toast.tsx
+│   ├── screens/             # Screen components
+│   │   ├── LoginScreen.tsx
+│   │   ├── ProductListScreen.tsx
+│   │   ├── ProductDetailsScreen.tsx
+│   │   ├── CartScreen.tsx
+│   │   └── OrderHistoryScreen.tsx
+│   ├── navigation/          # Navigation configuration
+│   │   └── AppNavigator.tsx
+│   ├── context/             # Context API for state management
+│   │   └── AppContext.tsx
+│   ├── services/            # API and storage services
+│   │   ├── api.ts
+│   │   └── storage.ts
+│   ├── utils/               # Utility functions
+│   │   └── auth.ts
+│   └── types/               # TypeScript type definitions
+│       └── index.ts
+├── App.tsx                  # Main app component
+├── package.json
+└── README.md
+```
+
+## Authentication
+
+The app uses mock authentication with the following credentials:
+
+- **Email**: `test@zignuts.com` OR `practical@zignuts.com`
+- **Password**: `123456`
+
+### How it works:
+
+1. User enters credentials on the Login screen
+2. On successful login, a fake token is generated and stored in AsyncStorage
+3. App automatically logs in if a valid token exists
+4. Login is required only when adding items to cart (if not logged in)
+
+## Usage
+
+### Product List Screen
+
+- Displays all available products from the API
+- Shows product image, title, and price
+- Tap any product to view details
+- Pull to refresh to reload products
+
+### Product Details Screen
+
+- Shows full product information
+- Large product image
+- Description, price, category, and ratings
+- "Add to Cart" button
+  - If not logged in: Shows login modal
+  - If logged in: Adds product to cart with success message
+
+### Cart Screen
+
+- View all items in cart
+- Update quantities (+/- buttons)
+- Remove items
+- View total price
+- "Place Order" button to checkout
+
+### Order History Screen
+
+- View all past orders
+- Shows order ID, date, total price, and item count
+- Latest orders appear first
+
+## State Management
+
+The app uses React Context API for state management with the following state:
+
+- **User**: Logged-in user information and token
+- **Cart**: Array of cart items with quantities
+- **Orders**: Array of placed orders
+
+## Data Persistence
+
+AsyncStorage is used to persist:
+
+- **User Token**: For auto-login functionality
+- **User Data**: Email and token information
+- **Orders**: All placed orders
+
+## API Integration
+
+The app fetches product data from:
+- **Base URL**: `https://fakestoreapi.com`
+- **Endpoints**:
+  - `GET /products` - Get all products
+  - `GET /products/:id` - Get product by ID
+
+## Reusable Components
+
+### Button
+Customizable button component with variants (primary, secondary, outline) and loading state.
+
+### Header
+Navigation header with back button support and custom right component.
+
+### Loader
+Full-screen loading indicator.
+
+### Modal
+Custom modal component with title, message, and action buttons.
+
+### ProductCard
+Product card component displaying image, title, and price.
+
+### Toast
+Toast notification component for success/error messages.
+
+## Screenshots
+
+<!-- Add screenshots here -->
+- Product List Screen
+- Product Details Screen
+- Cart Screen
+- Order History Screen
+- Login Screen
+
+## Development
+
+### Running the development server
+
+```bash
 npm start
-
-# OR using Yarn
-yarn start
 ```
 
-## Step 2: Build and run your app
+### Running tests
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+```bash
+npm test
 ```
 
-### iOS
+### Linting
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+```bash
+npm run lint
 ```
 
-Then, and every time you update your native dependencies, run:
+## Troubleshooting
 
-```sh
-bundle exec pod install
-```
+### Common Issues
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+1. **Metro bundler issues**
+   ```bash
+   npm start -- --reset-cache
+   ```
 
-```sh
-# Using npm
-npm run ios
+2. **iOS build issues**
+   ```bash
+   cd ios && pod install && cd ..
+   ```
 
-# OR using Yarn
-yarn ios
-```
+3. **Android build issues**
+   - Clean build: `cd android && ./gradlew clean && cd ..`
+   - Rebuild: `npm run android`
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## Future Enhancements
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+- [ ] User profile management
+- [ ] Product search and filtering
+- [ ] Product categories
+- [ ] Payment integration
+- [ ] Push notifications
+- [ ] Order tracking
+- [ ] Product reviews and ratings
+- [ ] Wishlist functionality
 
-## Step 3: Modify your app
+## License
 
-Now that you have successfully run the app, let's make changes!
+This project is for educational purposes.
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+## Author
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Developed as part of Zignuts Practical Assessment
